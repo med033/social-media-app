@@ -60,31 +60,4 @@
     </button>
   </form>
 
-  <div class="upload">
-    <input
-      class="upload-input"
-      id="upload"
-      type="file"
-      color="primary"
-      (change)="detectFiles($event)"
-    />
-    <button
-    class="btn-upload"
-    type="button"
-    mat-mini-fab
-    color="primary"
-    (click)="uploadSingle()"
-  >
-    <mat-icon>file_upload</mat-icon>
-  </button>
-  </div>
-  <div
-    *ngIf="currentUpload?.name"
-    [ngClass]="{ 'upload-msg': currentUpload?.name }"
-  >
-    <p>
-      File {{ currentUpload?.name }} was upload successfully :
-      {{ currentUpload?.progress }}%
-    </p>
-  </div>
 </div>

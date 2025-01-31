@@ -1,82 +1,153 @@
-/* Toolbar CSS */
-
-.welcome-msg {
-  font-family: "Pacifico", cursive;
-}
-
-.title {
-  font-size: 1.7em;
-  font-weight: bold;
-  font-family: "Pacifico", cursive;
-  text-decoration: none;
-  color: white;
-}
-
-ul {
-  margin-right: 6%;
-  li {
-    list-style: none;
-    font-family: "Pacifico", cursive;
-    a {
-      font-family: "Pacifico", cursive;
-      text-decoration: none;
-      color: white;
-      display: flex;
-      align-items: center;
-      mat-icon {
-        margin-right: 5%;
-      }
-    }
-    a:hover {
-      color: orange;
-    }
-  }
-}
-
-a:hover {
-  color: orange;
-}
-
-.logout {
-  cursor: pointer;
+/* Navbar Container */
+mat-toolbar{
+display: initial;
 }
 
 .toolbar {
-  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  // backdrop-filter: blur(10px); /* Blur effect */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 0 .2em gray;
+
 }
 
-.welcome-msg {
+/* Logo and App Name */
+.logo {
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 1em;
+  a.title{
+  text-decoration: none; 
+  display: flex;
+  align-items: center; 
+  }
+}
+
+.logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.app-name {
+  font-size: 1.5rem;
   font-weight: bold;
+  color: #3f51b5; /* Primary color */
+}
+
+/* Search Bar */
+.search-bar {
+  flex: 1;
+  margin: 0 20px;
+  max-width: 400px;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #3f51b5;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: rgba(63, 81, 181, 0.1);
+}
+
+.link-text {
+  margin-left: 8px;
+}
+
+/* User Section */
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.notifications {
+  position: relative;
+  margin-right: 20px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff4081;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
 }
 
 .avatar {
-  margin: 0 20px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  width: 45px;
-  height: 35px;
-  background-size: cover;
+  margin-right: 10px;
 }
 
-@media (max-width: 1200px) {
-  .welcome,
-  .user-name {
+.user-name {
+  font-weight: 500;
+}
+
+/* Auth Links */
+.auth-links {
+  display: flex;
+  align-items: center;
+}
+
+.auth-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #3f51b5;
+  margin-left: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.auth-link:hover {
+  background-color: rgba(63, 81, 181, 0.1);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-links,
+  .auth-links,
+  .user-section {
     display: none;
   }
-  .avatar {
-    margin: 0;
-  }
-  .title {
-    font-size: 1.2em;
-  }
 
-  ul {
-    margin-right: 4%;
-    mat-icon {
-      margin-right: 3%;
-    }
+  .mobile-menu {
+    display: block;
   }
 }

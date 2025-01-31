@@ -12,7 +12,9 @@ import {
   MatGridListModule,
   MatProgressBarModule,
   MatCardModule,
-  MatSelectModule
+  MatSelectModule,
+  MatMenuModule,
+  MatFormFieldModule
 } from "@angular/material";
 @NgModule({
   imports: [
@@ -29,7 +31,6 @@ import {
     MatProgressBarModule,
     MatCardModule,
     MatSelectModule
-
   ],
   exports: [
     MatButtonModule,
@@ -44,7 +45,8 @@ import {
     MatGridListModule,
     MatProgressBarModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
 
   ]
 })

@@ -97,7 +97,7 @@
               matInput
               ngModel
               id="name"
-              name="name"
+              name="username"
               type="text"
               required
               placeholder="Your name"
@@ -130,14 +130,17 @@
         Sign Up
       </button>
     </form>
-
+    <div *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+<!-- 
     <div class="divider-container" fxFlex fxLayoutAlign="center">
       <div class="line"><mat-divider></mat-divider></div>
       <div class="text ">Or</div>
       <div class="line"><mat-divider></mat-divider></div>
-    </div>
+    </div> -->
 
-    <button
+    <!-- <button
       class="btn-sign-up"
       mat-raised-button
       color="primary"
@@ -146,7 +149,7 @@
       (click)="signUpGoogle()"
     >
       Continue with Google
-    </button>
+    </button> -->
 
     <div fxFlex fxLayoutAlign="center">
       <span

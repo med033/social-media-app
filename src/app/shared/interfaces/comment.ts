@@ -1,9 +1,11 @@
+import { IUser } from "./user";
+
 export interface IComment {
-  id: string;
+  id?: string;
   content: string;
-  avatar: string;
-  createdOn: Date;
-  createdBy: string;
-  likes: number;
-  dislikes: number;
+  avatar?: string;
+  createdAt?: Date;
+  createdBy?: IUser;
+  likes?: number;
+  dislikes?: number;
 }

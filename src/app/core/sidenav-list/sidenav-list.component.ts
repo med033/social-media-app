@@ -1,9 +1,7 @@
 import { Component } from "@angular/core";
+import { MatSnackBar } from "@angular/material";
+import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/services/auth.service";
-import { Store } from "@ngrx/store";
-import { IAppState } from "src/app/+store";
-import { SignOut } from 'src/app/+store/auth/actions';
-
 @Component({
   selector: "app-sidenav-list",
   templateUrl: "./sidenav-list.component.html",
@@ -12,7 +10,8 @@ import { SignOut } from 'src/app/+store/auth/actions';
 export class SidenavListComponent {
   constructor(
     private authService: AuthService,
-    private store: Store<IAppState>
+    private router:Router,
+    private snackbar:MatSnackBar
   ) {}
 
   get isAuth() {
@@ -22,7 +21,7 @@ export class SidenavListComponent {
   get currentUser() {
     return this.authService.userData;
   }
-  signOut() {
-    this.store.dispatch(new SignOut());
+  signOut(): void {
+    this.authService.signOut();
   }
 }

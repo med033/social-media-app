@@ -6,7 +6,6 @@ import {
   Router
 } from "@angular/router";
 import { AuthService } from "../../auth/services/auth.service";
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -14,7 +13,7 @@ import { map } from 'rxjs/operators';
   providedIn: "root"
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router,   private afAuth: AngularFireAuth,) {}
+  constructor(private authService: AuthService, private router: Router) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

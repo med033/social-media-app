@@ -4,13 +4,13 @@ mat-sidenav {
 .site {
   // position: relative;
   // min-height: 100vh;
-  background-image: url("../assets/images/angular-project-background.jpg");
+  // background-image: url("../assets/images/bg3.png");
   background-size: contain;
   display: flex;
   flex-direction: column;
 }
 .main {
-  min-height: 82.5vh;
+  // height: 100vh;
 }
 .footer {
   // position: absolute;
@@ -22,4 +22,8 @@ mat-sidenav {
   .main {
     background-image: none;
   }
+}
+.mat-drawer-container{
+height: 100vh;
+background-color: rgb(0 0 0 / 7%);  
 }

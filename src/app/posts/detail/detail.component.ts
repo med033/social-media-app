@@ -2,9 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { IPost } from "../../shared/interfaces/post";
 import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
-import { IAppState, getPostDetailSelector } from "src/app/+store";
-import { Store } from "@ngrx/store";
-import { PostDetail } from "src/app/+store/posts/actions";
+import { PostService } from "../services/post.service";
 
 @Component({
   selector: "app-details",
@@ -16,12 +14,11 @@ export class DetailComponent implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private store: Store<IAppState>
+    private _post:PostService
   ) {}
 
   ngOnInit() {
     const postId: string = this.activateRoute.snapshot.params.id;
-    this.store.dispatch(new PostDetail({ postId }));
-    this.post$ = this.store.select(getPostDetailSelector);
+    this.post$ = this._post.getPost(postId)
   }
 }

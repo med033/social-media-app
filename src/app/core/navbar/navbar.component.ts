@@ -1,9 +1,5 @@
 import { Component, Output, EventEmitter } from "@angular/core";
 import { AuthService } from "../../auth/services/auth.service";
-import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/+store';
-import { SignOut } from 'src/app/+store/auth/actions';
-
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -12,7 +8,7 @@ import { SignOut } from 'src/app/+store/auth/actions';
 export class NavbarComponent {
   @Output() sidenavToggle = new EventEmitter<void>();
 
-  constructor(private authService: AuthService, private store: Store<IAppState>) {}
+  constructor(private authService: AuthService) {}
 
   get isAuth() {
     return this.authService.isLoggedIn;
@@ -23,7 +19,7 @@ export class NavbarComponent {
   }
 
   signOut() {
-    this.store.dispatch(new SignOut())
+    this.authService.signOut();
   }
 
   toggleSidenav() {

@@ -4,14 +4,11 @@
     <mat-sidenav #sidenav>
       <app-sidenav-list></app-sidenav-list>
     </mat-sidenav>
-    <mat-sidenav-content class="site">
+    <mat-sidenav-content class="">
       <app-navbar (sidenavToggle)="sidenav.toggle()"></app-navbar>
       <div class="main">
         <router-outlet></router-outlet>
       </div>
-      <footer class="footer">
-        <app-footer></app-footer>
-      </footer>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </ng-container>

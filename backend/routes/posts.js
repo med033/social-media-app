@@ -3,6 +3,7 @@ const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 const Like = require('../models/Like');
 const router = express.Router();
+const authMiddleware= require('../middleware/auth')
 
 // Créer un post
 router.post('/', async (req, res) => {
@@ -42,16 +43,23 @@ router.post('/:id/like', async (req, res) => {
 });
 
 // Ajouter un commentaire à un post
-router.post('/:id/comment', async (req, res) => {
+router.post('/:id/comment', authMiddleware, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
         const comment = new Comment({
             content: req.body.content,
-            post: post._id
+            post: post._id,
+            createdBy: req.user.id // Set the createdBy field using the authenticated user's ID
         });
+
         await comment.save();
         post.comments.push(comment._id);
         await post.save();
+
         res.status(201).json(comment);
     } catch (err) {
         res.status(400).json({ message: err.message });

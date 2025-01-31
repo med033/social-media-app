@@ -1,13 +1,11 @@
+import { IUser } from "./user";
+
 export interface IPost {
-  id: string,
+  id?: string;
   title: string;
-  description: string;
-  createdOn: Date;
-  likes: number;
-  dislikes: number;
-  imgName?: string;
-  imageLink?: string;
-  createdByName: string;
-  createdById: string;
-  avatar: string;
+  content: string;
+  author: IUser; // Reference to the user who created the post
+  likes?: number;
+  dislikes?: number;
+  createdAt?: Date;
 }

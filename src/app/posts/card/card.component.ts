@@ -3,9 +3,7 @@ import { IPost } from "../../shared/interfaces/post";
 import { Router, ActivatedRoute } from "@angular/router";
 import { IUser } from "../../shared/interfaces/user";
 import { AuthService } from "../../auth/services/auth.service";
-import { Store } from "@ngrx/store";
-import { IAppState } from "src/app/+store";
-import { LikeDislikePost, DeletePost } from "src/app/+store/posts/actions";
+import { PostService } from "../services/post.service";
 
 @Component({
   selector: "app-card",
@@ -21,8 +19,8 @@ export class CardComponent {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private _post: PostService,
     private activatedRoute: ActivatedRoute,
-    private store: Store<IAppState>
   ) {
     this.userData = this.authService.userData;
   }
@@ -31,28 +29,41 @@ export class CardComponent {
     if (!this.userData) {
       return false;
     }
-    return this.userData.id === this.post.createdById;
+    return this.userData.id === this.post.author.id;
   }
 
-  likePost(postId: string) {
-    const value = this.like.nativeElement.textContent;
-    this.store.dispatch(
-      new LikeDislikePost({ postId, action: "likes", value })
-    );
-  }
+ // Like a post
+ likePost(postId: string): void {
+  const newLikes = this.post.likes + 1; // Increment likes
+  this._post.updateLikeDislike(postId, "likes", newLikes).subscribe({
+    next: (updatedPost) => {
+      this.post = updatedPost; // Update the post with the new like count
+    },
+    error: (err) => {
+      console.error("Failed to like post:", err);
+    }
+  });
+}
 
-  dislikePost(postId: string) {
-    const value = this.dislike.nativeElement.textContent;
-    this.store.dispatch(
-      new LikeDislikePost({ postId, action: "dislikes", value })
-    );
-  }
+// Dislike a post
+dislikePost(postId: string): void {
+  const newDislikes = this.post.dislikes + 1; // Increment dislikes
+  this._post.updateLikeDislike(postId, "dislikes", newDislikes).subscribe({
+    next: (updatedPost) => {
+      this.post = updatedPost; // Update the post with the new dislike count
+    },
+    error: (err) => {
+      console.error("Failed to dislike post:", err);
+    }
+  });
+}
+
 
   getDetails(postId: string) {
     this.router.navigate(["post", postId]);
   }
 
   deletePost() {
-    this.store.dispatch(new DeletePost(this.post));
-  }
+    this._post.deletePost(this.post.id)
+}
 }
