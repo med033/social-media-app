@@ -30,7 +30,7 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
   public get userData(): IUser {
-    return this.currentUserSubject.value;
+    return JSON.parse(localStorage.getItem('currentUser') || 'null')['user'];
   }
   signUp(userData:IUser): Observable<IUser> {
     return this.http.post<IUser>(`${this.apiUrl}/signup`, userData)

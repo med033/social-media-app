@@ -7,14 +7,14 @@ require('dotenv').config();
 
 // Inscription
 router.post('/signup', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { avatar,  username, email, password } = req.body;
   console.log(req);
   
   try {
     let user = await User.findOne({ email });
     if (user) return res.status(400).json({ msg: 'Utilisateur existe déjà' });
 
-    user = new User({ username, email, password });
+    user = new User({ avatar, username, email, password });
     await user.save();
 
     const payload = { user: { id: user.id } };
