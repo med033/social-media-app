@@ -29,8 +29,8 @@ export class CreateComponent {
   }
 
   // Create post
-  createPost(title,description): void {
-    if (this.postForm.invalid) {
+  createPost(form): void {
+    if (form.invalid) {
       this.snackbar.open("Please fill all required fields", "Close", {
         duration: 3000
       });
@@ -39,8 +39,8 @@ export class CreateComponent {
 
 
     const post: IPost = {
-      title: title,
-      content: description,
+      title: form.value.title,
+      content: form.value.description,
       author: this._userData,
       likes: 0
     };

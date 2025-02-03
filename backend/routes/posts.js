@@ -8,7 +8,7 @@ const authMiddleware= require('../middleware/auth')
 // Créer un post
 router.post('/', async (req, res) => {
     try {
-        const post = new Post({ content: req.body.content });
+        const post = new Post(req.body);
         await post.save();
         res.status(201).json(post);
     } catch (err) {
@@ -17,11 +17,11 @@ router.post('/', async (req, res) => {
 });
 
 // Lister tous les posts avec leurs commentaires et likes
-router.get('/', async (req, res) => {
+router.get('/',authMiddleware, async (req, res) => {
     try {
         const posts = await Post.find()
+            .populate('author')
             .populate('comments')
-            .populate('likes');
         res.json(posts);
     } catch (err) {
         res.status(500).json({ message: err.message });

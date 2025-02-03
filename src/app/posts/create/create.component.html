@@ -9,7 +9,7 @@
   <form
     #createFormInput="ngForm"
     (ngSubmit)="
-      createPost(createFormInput.value.title, createFormInput.value.description)
+      createPost(createFormInput)
     "
     fxLayout="column"
   >

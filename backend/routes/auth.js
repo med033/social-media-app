@@ -40,11 +40,16 @@ router.post('/login', async (req, res) => {
     const payload = { user: { id: user.id } };
     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
       if (err) throw err;
-      res.json({ token });
+
+      // Remove sensitive info like password before sending user data
+      const { password, ...userWithoutPassword } = user.toObject();
+
+      res.json({ token, user: userWithoutPassword });
     });
   } catch (err) {
     res.status(500).send('Erreur serveur');
   }
 });
+
 
 module.exports = router;

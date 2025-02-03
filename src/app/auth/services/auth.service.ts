@@ -30,7 +30,7 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
   public get userData(): IUser {
-    return JSON.parse(localStorage.getItem('currentUser') || 'null');
+    return this.currentUserSubject.value;
   }
   signUp(userData:IUser): Observable<IUser> {
     return this.http.post<IUser>(`${this.apiUrl}/signup`, userData)
@@ -54,7 +54,7 @@ export class AuthService {
   signOut(): void {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 
   private handleAuthentication(user: IUser): void {

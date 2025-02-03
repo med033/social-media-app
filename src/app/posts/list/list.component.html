@@ -1,5 +1,8 @@
-<app-loader *ngIf="!(allPosts$ | async)?.length"></app-loader>
+<app-loader *ngIf="!(allPosts$ | async)"></app-loader>
 <div class="wrapper" fxLayout="column">
+  <div *ngIf="!(allPosts$ | async).length" class="no-posts-message">
+    No posts available.
+  </div>
   <app-card *ngFor="let post of allPosts$ | async" [post]="post"></app-card>
 </div>
 <!-- <ng-template #loader>
