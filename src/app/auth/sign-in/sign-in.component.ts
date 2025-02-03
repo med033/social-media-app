@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./sign-in.component.scss"]
 })
 export class SignInComponent {
+  hidePassword = false
   constructor(private _auth:AuthService,
     private router:Router
   ) {}

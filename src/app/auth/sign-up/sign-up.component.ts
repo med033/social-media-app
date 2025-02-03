@@ -19,7 +19,7 @@ export class SignUpComponent {
     }
   ];
   errorMessage: any;
-
+  hidePassword = false;
   constructor(private _auth:AuthService,
     private router:Router
   ) {}

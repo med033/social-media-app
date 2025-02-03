@@ -47,11 +47,16 @@
                 ngModel
                 id="password"
                 name="password"
-                type="password"
+                [type]="hidePassword ? 'password' : 'text'"
                 required
                 minlength="6"
                 placeholder="Password"
               />
+              <!-- Eye Icon to toggle password visibility -->
+              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hidePassword">
+                <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+
               <mat-error *ngIf="passwordInput.hasError('required')"
                 >Password is required.</mat-error
               >

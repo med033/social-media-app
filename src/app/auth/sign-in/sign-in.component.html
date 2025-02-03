@@ -39,19 +39,27 @@
           matInput
           ngModel
           id="password"
-          type="password"
+          [type]="hidePassword ? 'password' : 'text'"
           name="password"
           required
           minlength="6"
           placeholder="Password"
         />
-        <mat-error *ngIf="passwordInput.hasError('required')"
-          >Password is required.</mat-error
-        >
-        <mat-error *ngIf="passwordInput.hasError('minlength')"
-          >Password must be at least 6 symbols.</mat-error
-        >
+        
+        <!-- Eye Icon to toggle password visibility -->
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hidePassword">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      
+        <!-- Error messages -->
+        <mat-error *ngIf="passwordInput.hasError('required')">
+          Password is required.
+        </mat-error>
+        <mat-error *ngIf="passwordInput.hasError('minlength')">
+          Password must be at least 6 symbols.
+        </mat-error>
       </mat-form-field>
+      
       <button
         class="btn-sign-in"
         mat-raised-button
@@ -62,11 +70,11 @@
       </button>
     </form>
 
-    <div class="divider-container" fxLayout fxLayoutAlign="center center">
+    <!-- <div class="divider-container" fxLayout fxLayoutAlign="center center">
       <div class="line"><mat-divider></mat-divider></div>
       <div class="text ">Or</div>
       <div class="line"><mat-divider></mat-divider></div>
-    </div>
+    </div> -->
 
     <!-- <div fxFlex fxLayoutAlign="center">
       <button mat-raised-button color="primary" (click)="signInGoogle()">
