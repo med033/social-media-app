@@ -42,7 +42,8 @@ export class CreateComponent {
       title: form.value.title,
       content: form.value.description,
       author: this._userData,
-      likes: 0
+      likes: 0,
+      dislikes:0
     };
 
     this.postService.createPost(post).subscribe({

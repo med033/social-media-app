@@ -6,7 +6,7 @@
       <mat-card-subtitle
         >Created on:
         {{
-          post.createdAt | date: "dd.MM.yyyy hh:mm:SS"
+          post.createdAt | date: "dd.MM.yyyy H:mm:SS"
         }}</mat-card-subtitle
       >
       <mat-card-subtitle
@@ -23,14 +23,14 @@
   </mat-card-content>
   <mat-card-actions class="action-btn" fxLayout fxLayoutAlign="space-between">
     <div class="like-dislike-btn">
-      <button (click)="likePost(post.id)" mat-button>
+      <button (click)="likePost(post._id)" mat-button>
         <mat-icon>thumb_up_alt</mat-icon>
       </button>
       <span #like class="likes">
         {{ post.likes }}
       </span>
 
-      <button (click)="dislikePost(post.id)" mat-button>
+      <button (click)="dislikePost(post._id)" mat-button>
         <mat-icon>thumb_down_alt</mat-icon>
       </button>
       <span #dislike class="dislikes">
@@ -46,7 +46,7 @@
       <mat-icon>delete</mat-icon>
     </button>
 
-    <button *ngIf="!isDetailPage" (click)="getDetails(post.id)" mat-button>
+    <button *ngIf="!isDetailPage" (click)="getDetails(post._id)" mat-button>
       <mat-icon>more_horiz</mat-icon>
     </button>
   </mat-card-actions>

@@ -14,7 +14,7 @@ display: initial;
   top: 0;
   z-index: 1000;
   box-shadow: 0 0 .2em gray;
-
+  color: #3f51b5;
 }
 
 /* Logo and App Name */
@@ -140,7 +140,7 @@ display: initial;
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .nav-links,
   .auth-links,
   .user-section {

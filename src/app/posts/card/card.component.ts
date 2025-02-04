@@ -35,7 +35,7 @@ export class CardComponent {
  // Like a post
  likePost(postId: string): void {
   const newLikes = this.post.likes + 1; // Increment likes
-  this._post.updateLikeDislike(postId, "likes", newLikes).subscribe({
+  this._post.updateLikeDislike(postId, "like", newLikes).subscribe({
     next: (updatedPost) => {
       this.post = updatedPost; // Update the post with the new like count
     },
@@ -48,7 +48,7 @@ export class CardComponent {
 // Dislike a post
 dislikePost(postId: string): void {
   const newDislikes = this.post.dislikes + 1; // Increment dislikes
-  this._post.updateLikeDislike(postId, "dislikes", newDislikes).subscribe({
+  this._post.updateLikeDislike(postId, "dislike", newDislikes).subscribe({
     next: (updatedPost) => {
       this.post = updatedPost; // Update the post with the new dislike count
     },
@@ -64,6 +64,6 @@ dislikePost(postId: string): void {
   }
 
   deletePost() {
-    this._post.deletePost(this.post.id)
+    this._post.deletePost(this.post._id)
 }
 }

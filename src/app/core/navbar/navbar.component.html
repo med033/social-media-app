@@ -23,18 +23,18 @@
         <span class="link-text">Profile</span>
       </a>
     </li>
-    <li>
+    <!-- <li>
       <a routerLink="/user/list">
         <mat-icon>group</mat-icon>
         <span class="link-text">Users</span>
       </a>
-    </li>
-    <li>
+    </li> -->
+    <!-- <li>
       <a routerLink="/post/list">
         <mat-icon>article</mat-icon>
         <span class="link-text">Posts</span>
       </a>
-    </li>
+    </li> -->
     <li>
       <a routerLink="/post/create">
         <mat-icon>create</mat-icon>
@@ -46,10 +46,9 @@
   <!-- User Profile and Logout -->
   <div class="user-section" *ngIf="isAuth">
     <div class="notifications">
-      <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
-        <mat-icon>notifications</mat-icon>
-        <span class="notification-badge">3</span>
-      </button>
+        <mat-icon mat-icon-button [matMenuTriggerFor]="notificationsMenu" matBadge="15"
+          matBadgeColor="warn">notifications</mat-icon>
+        <!-- <span class="notification-badge">3</span> -->
       <mat-menu #notificationsMenu="matMenu">
         <button mat-menu-item>New like on your post</button>
         <button mat-menu-item>New comment on your post</button>
@@ -89,7 +88,7 @@
   </div>
 
   <!-- Hamburger Menu for Mobile -->
-  <div class="mobile-menu" fxHide.gt-xs>
+  <div class="mobile-menu" fxHide.gt-md>
     <button mat-icon-button (click)="toggleSidenav()">
       <mat-icon>menu</mat-icon>
     </button>

@@ -34,8 +34,8 @@ export class PostService {
 
   // Update likes/dislikes for a post
   updateLikeDislike(postId: string, prop: string, value: number): Observable<IPost> {
-    return this.http.patch<IPost>(
-      `${this.apiUrl}/posts/${postId}/like`, 
+    return this.http.post<IPost>(
+      `${this.apiUrl}/posts/${postId}/${prop}`, 
       { [prop]: value }, 
       { headers: this.getAuthHeaders() }
     );

@@ -31,10 +31,28 @@ router.get('/',authMiddleware, async (req, res) => {
 // Ajouter un like à un post
 router.post('/:id/like', async (req, res) => {
     try {
+        console.log(req.params.id);
+        
+        const post = await Post.findById(req.params.id);
+        console.log(post);
+        
+        const like = new Like({ post: post._id });
+        await like.save();
+        post.likes ++
+        await post.save();
+        res.status(201).json(post);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+// Ajouter un like à un post
+router.post('/:id/dislike', async (req, res) => {
+    try {
         const post = await Post.findById(req.params.id);
         const like = new Like({ post: post._id });
         await like.save();
-        post.likes.push(like._id);
+        post.likes --;
         await post.save();
         res.status(201).json(post);
     } catch (err) {
